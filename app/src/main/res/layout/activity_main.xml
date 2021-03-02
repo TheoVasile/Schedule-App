@@ -7,10 +7,11 @@
     tools:context=".MainActivity"
     >
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar"
         android:background="@color/colorPrimary"
-        android:id="@+id/toolbar"
+        android:elevation="5dp"
         >
         <TextView
             android:layout_width="match_parent"
