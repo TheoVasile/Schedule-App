@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 24; i++) {
             LinearLayout timeBar = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.time_bar, timeLinearLayout, false);
             TextView timeBarText = timeBar.findViewById(R.id.time_bar_text);
-            String text = String.valueOf(i) + ":00";
+            String text = i + ":00";
             timeBarText.setText(text);
 
             timeLinearLayout.addView(timeBar);
@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
             TextView routineEndTime = routineCard.findViewById(R.id.routine_end_time);
             routineEndTime.setText(routineModel.getEndTime());
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+            final float scale = this.getResources().getDisplayMetrics().density;
+            params.setMargins(0, (int) (((routineModel.getStartHour() + 0.5) * 60 + routineModel.getStartMinute()) * scale), 0, 0);
+            routineCard.setLayoutParams(params);
 
             routineLinearLayout.addView(routineCard);
         }
