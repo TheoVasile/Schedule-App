@@ -22,13 +22,18 @@
             android:gravity="center"
             />
     </androidx.appcompat.widget.Toolbar>
-    <LinearLayout
-        android:id="@+id/time_linear_layout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_below="@+id/toolbar"
-        android:background="@color/colorSecondary"
-        />
+        >
+        <LinearLayout
+            android:id="@+id/time_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorSecondary"
+            />
+    </ScrollView>
 
 </RelativeLayout>
