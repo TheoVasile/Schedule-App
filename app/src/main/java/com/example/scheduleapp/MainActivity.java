@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         timeLinearLayout = findViewById(R.id.time_linear_layout);
         routineLinearLayout = findViewById(R.id.routine_linear_layout);
         routineModelArrayList = new ArrayList<RoutineModel>();
-        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:00", "12:00"));
+        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:00", "12:30"));
 
         for (int i = 0; i < 24; i++) {
             LinearLayout timeBar = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.time_bar, timeLinearLayout, false);
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
             float height = this.getResources().getDimension(R.dimen.gridHeight);
-            System.out.println("HEIGHT: " + height);
-            params.setMargins(0, (int) ((routineModel.getStartHour() + 0.5 + routineModel.getStartMinute() / 60) * height), 0, 0);
+            params.setMargins((int) height, (int) ((routineModel.getStartHour() + 0.5 + routineModel.getStartMinute() / 60) * height), 0, 0);
+            params.height = (int) ((routineModel.getEndHour() - routineModel.getStartHour() + (float) (routineModel.getEndMinute() - routineModel.getStartMinute()) / 60) * height);
             routineCard.setLayoutParams(params);
 
             routineLinearLayout.addView(routineCard);
