@@ -48,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
             routineEndTime.setText(routineModel.getEndTime());
 
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-            final float scale = this.getResources().getDisplayMetrics().density;
-            params.setMargins(0, (int) (((routineModel.getStartHour() + 0.5) * 60 + routineModel.getStartMinute()) * scale), 0, 0);
+            float height = this.getResources().getDimension(R.dimen.gridHeight);
+            System.out.println("HEIGHT: " + height);
+            params.setMargins(0, (int) ((routineModel.getStartHour() + 0.5 + routineModel.getStartMinute() / 60) * height), 0, 0);
             routineCard.setLayoutParams(params);
 
             routineLinearLayout.addView(routineCard);
