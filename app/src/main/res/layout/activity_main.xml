@@ -28,13 +28,23 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
         >
-        <LinearLayout
-            android:id="@+id/time_linear_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/colorSecondary"
-            />
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/time_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorSecondary"
+                />
+            <LinearLayout
+                android:id="@+id/routine_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                />
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>
