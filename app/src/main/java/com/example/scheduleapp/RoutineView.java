@@ -2,6 +2,8 @@ package com.example.scheduleapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,5 +30,16 @@ public class RoutineView extends AppCompatActivity {
         TextView routineEndTime = findViewById(R.id.routine_view_end_time);
         routineEndTime.setText(endTime);
 
+        ImageButton backButton = findViewById(R.id.routine_back_button);
+        backButton.setOnClickListener(new onBackClick());
+
+    }
+
+    public class onBackClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(RoutineView.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
