@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent myIntent = new Intent(MainActivity.this, RoutineView.class);
+            TextView title = v.findViewById(R.id.routine_title);
+            TextView startTime = v.findViewById(R.id.routine_start_time);
+            TextView endTime = v.findViewById(R.id.routine_end_time);
+            myIntent.putExtra("title", title.getText());
+            myIntent.putExtra("startTime", startTime.getText());
+            myIntent.putExtra("endTime", endTime.getText());
             startActivity(myIntent);
         }
     }
