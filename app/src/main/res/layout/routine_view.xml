@@ -2,10 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/routine_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar"
+        android:background="@color/colorPrimary"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         >
@@ -18,6 +21,8 @@
                 android:background="@drawable/ic_navigate_before_black_24dp"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -30,5 +35,98 @@
                 />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/routine_toolbar"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorAccent"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Routine Title"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/gothic"
+                    android:layout_margin="10dp"
+                    />
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    >
+                    <TextView
+                        android:id="@+id/routine_view_start_time"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="1:00"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/gothic"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:text="to"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/gothic"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/routine_view_end_time"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="10:00"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/gothic"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Routine Description"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:fontFamily="@font/gothic"
+                    android:layout_margin="10dp"
+                    />
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/subroutine_LL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                />
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_add_circle_outline_black_24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
