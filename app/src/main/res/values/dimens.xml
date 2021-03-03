@@ -2,4 +2,5 @@
 <resources>
     <dimen name="toolbar">60dp</dimen>
     <dimen name="gridHeight">60dp</dimen>
+    <dimen name="toolbarTextSize">30sp</dimen>
 </resources>
