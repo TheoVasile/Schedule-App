@@ -67,13 +67,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         RelativeLayout layout = findViewById(R.id.main_layout);
-        RelativeLayout line = new RelativeLayout(this);
-        int currentTime = Calendar.getInstance().get(Calendar.HOUR);
-        int currentHour = Calendar.getInstance().get(Calendar.MINUTE);
-        RelativeLayout.LayoutParams lineParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 3);
-        lineParams.setMargins(0, (int) ((currentTime + 0.5 + (float) currentHour / 60) * height), 0, 0);
+        LinearLayout line = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.time_line, layout, false);
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR);
+        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        RelativeLayout.LayoutParams lineParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        lineParams.setMargins(0, (int) ((currentHour + 0.5 + (float) currentMinute / 60) * height - 15 * this.getResources().getDisplayMetrics().density), 0, 0);
         line.setLayoutParams(lineParams);
-        line.setBackgroundResource(R.color.colorAccent);
 
         layout.addView(line);
 
