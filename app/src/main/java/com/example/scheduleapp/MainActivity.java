@@ -2,8 +2,10 @@ package com.example.scheduleapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -55,8 +57,18 @@ public class MainActivity extends AppCompatActivity {
             params.height = (int) ((routineModel.getEndHour() - routineModel.getStartHour() + (float) (routineModel.getEndMinute() - routineModel.getStartMinute()) / 60) * height);
             routineCard.setLayoutParams(params);
 
+            routineCard.setOnClickListener(new onRoutineClick());
+
             routineLinearLayout.addView(routineCard);
         }
 
+    }
+
+    public class onRoutineClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent myIntent = new Intent(MainActivity.this, RoutineView.class);
+            startActivity(myIntent);
+        }
     }
 }
