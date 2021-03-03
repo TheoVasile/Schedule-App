@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static java.lang.Math.abs;
 
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             timeLinearLayout.addView(timeBar);
         }
 
+        float height = this.getResources().getDimension(R.dimen.gridHeight);
+
         for (RoutineModel routineModel : routineModelArrayList) {
             RelativeLayout routineCard = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.routine_card, routineLinearLayout, false);
 
@@ -52,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             routineEndTime.setText(routineModel.getEndTime());
 
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-            float height = this.getResources().getDimension(R.dimen.gridHeight);
             params.setMargins((int) height, (int) ((routineModel.getStartHour() + 0.5 + (float) routineModel.getStartMinute() / 60) * height), 0, 0);
             params.height = (int) ((routineModel.getEndHour() - routineModel.getStartHour() + (float) (routineModel.getEndMinute() - routineModel.getStartMinute()) / 60) * height);
             routineCard.setLayoutParams(params);
@@ -61,6 +65,17 @@ public class MainActivity extends AppCompatActivity {
 
             routineLinearLayout.addView(routineCard);
         }
+
+        RelativeLayout layout = findViewById(R.id.main_layout);
+        RelativeLayout line = new RelativeLayout(this);
+        int currentTime = Calendar.getInstance().get(Calendar.HOUR);
+        int currentHour = Calendar.getInstance().get(Calendar.MINUTE);
+        RelativeLayout.LayoutParams lineParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 3);
+        lineParams.setMargins(0, (int) ((currentTime + 0.5 + (float) currentHour / 60) * height), 0, 0);
+        line.setLayoutParams(lineParams);
+        line.setBackgroundResource(R.color.colorAccent);
+
+        layout.addView(line);
 
     }
 
