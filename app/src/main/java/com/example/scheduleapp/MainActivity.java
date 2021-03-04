@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -61,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
         timeLinearLayout = findViewById(R.id.time_linear_layout);
         routineLinearLayout = findViewById(R.id.routine_linear_layout);
         routineModelArrayList = new ArrayList<RoutineModel>();
-        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "12:30", 7, 3, 2021, new ArrayList<RoutineModel>(), new ArrayList<String>()));
+        ArrayList<String> goals = new ArrayList<>();
+        goals.add("fitness");
+        goals.add("health");
+        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "13:30", 7, 3, 2021, new ArrayList<RoutineModel>(), goals));
 
         for (int i = 0; i < 24; i++) {
             // add new grid line for each hour
@@ -94,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
 
             TextView routineEndTime = routineCard.findViewById(R.id.routine_end_time);
             routineEndTime.setText(routineModel.getEndTime());
+
+            GridLayout goalsGridLayout = routineCard.findViewById(R.id.goal_grid_layout);
+            for (String goal : goals) {
+                CardView goalTag = (CardView) LayoutInflater.from(this).inflate(R.layout.goal_tag, routineCard, false);
+
+                TextView title = goalTag.findViewById(R.id.goal_title);
+                title.setText(goal);
+
+                goalsGridLayout.addView(goalTag);
+            }
 
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
             params.setMargins((int) height, (int) ((routineModel.getStartHour() + 0.5 + (float) routineModel.getStartMinute() / 60) * height), 0, 0);
