@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         timeLinearLayout = findViewById(R.id.time_linear_layout);
         routineLinearLayout = findViewById(R.id.routine_linear_layout);
         routineModelArrayList = new ArrayList<RoutineModel>();
-        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "12:30"));
+        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "12:30", 7, 3, 2021, new ArrayList<RoutineModel>(), new ArrayList<String>()));
 
         for (int i = 0; i < 24; i++) {
             // add new grid line for each hour
