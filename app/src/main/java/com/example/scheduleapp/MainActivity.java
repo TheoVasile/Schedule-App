@@ -40,16 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // drawer layout instance to toggle the menu icon to open
-        // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -76,7 +67,14 @@ public class MainActivity extends AppCompatActivity {
             // add new grid line for each hour
             LinearLayout timeBar = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.time_bar, timeLinearLayout, false);
             TextView timeBarText = timeBar.findViewById(R.id.time_bar_text);
-            String text = i + ":00";
+            String text;
+            if (i <= 12) {
+                text = i + ":00 am";
+            }
+
+            else {
+                text = i - 12 + ":00 pm";
+            }
             timeBarText.setText(text);
 
             timeLinearLayout.addView(timeBar);
@@ -111,9 +109,13 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout layout = findViewById(R.id.main_layout);
         LinearLayout line = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.time_line, layout, false);
         int currentHour = Calendar.getInstance().get(Calendar.HOUR);
+        if (Calendar.getInstance().get(Calendar.PM) == Calendar.PM) {
+            currentHour += 12;
+        }
+        int am_pm = Calendar.getInstance().get(Calendar.AM_PM);
         int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
         RelativeLayout.LayoutParams lineParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        lineParams.setMargins(0, (int) ((currentHour + 0.5 + (float) currentMinute / 60) * height - 15 * this.getResources().getDisplayMetrics().density), 0, 0);
+        lineParams.setMargins(0, (int) ((currentHour + am_pm * 12 + 0.5 + (float) currentMinute / 60) * height - 15 * this.getResources().getDisplayMetrics().density), 0, 0);
         line.setLayoutParams(lineParams);
 
         layout.addView(line);
