@@ -35,7 +35,12 @@ public class RoutineModel {
     }
 
     public String getStartTime() {
-        return this.startTime;
+        if (this.getStartHour() > 12) {
+            return this.getStartHour() - 12 + ":" + this.startTime.split(":")[1] + " pm";
+        }
+        else {
+            return this.startTime + " am";
+        }
     }
 
     public int getStartHour() {
@@ -47,7 +52,12 @@ public class RoutineModel {
     }
 
     public String getEndTime() {
-        return this.endTime;
+        if (this.getEndHour() > 12) {
+            return this.getEndHour() - 12 + ":" + this.endTime.split(":")[1] + " pm";
+        }
+        else {
+            return this.endTime + " am";
+        }
     }
 
     public int getEndHour() {
