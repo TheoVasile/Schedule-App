@@ -6,9 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +28,7 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 
+import java.nio.channels.Selector;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> goals = new ArrayList<>();
         goals.add("fitness");
         goals.add("health");
-        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "13:30", 7, 3, 2021, new ArrayList<RoutineModel>(), goals));
+        routineModelArrayList.add(new RoutineModel("Workout", "Morning bulk workout.", "10:40", "13:30", 7, 3, 2021, new int[] {42, 148, 214}, new ArrayList<RoutineModel>(), goals));
 
         for (int i = 0; i < 24; i++) {
             // add new grid line for each hour
@@ -85,31 +91,55 @@ public class MainActivity extends AppCompatActivity {
             timeLinearLayout.addView(timeBar);
         }
 
-        float height = this.getResources().getDimension(R.dimen.gridHeight);
+        float height = this.getResources().getDimension(R.dimen.gridHeight); // distance between grid lines
 
         for (RoutineModel routineModel : routineModelArrayList) {
             // put routine on screen
             RelativeLayout routineCard = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.routine_card, routineLinearLayout, false);
 
+            // set routine title
             TextView routineTitle = routineCard.findViewById(R.id.routine_title);
             routineTitle.setText(routineModel.getTitle());
 
+            // set routine start time
             TextView routineStartTime = routineCard.findViewById(R.id.routine_start_time);
             routineStartTime.setText(routineModel.getStartTime());
 
+            // set routine end time
             TextView routineEndTime = routineCard.findViewById(R.id.routine_end_time);
             routineEndTime.setText(routineModel.getEndTime());
 
+
+            // int startColor = (int) Integer.parseInt(routineModel.getHEX(), 16);
+            float[] hsv = {0f, 0f, 0f};
+            Color.RGBToHSV(routineModel.getRGB()[0], routineModel.getRGB()[1], routineModel.getRGB()[2], hsv);
+            int startColor = Color.HSVToColor(hsv);
+            hsv[0] *= 0.95;
+            hsv[1] *= 0.5;
+            hsv[2] *= 1.2;
+            int endColor = Color.HSVToColor(hsv);
+
+            System.out.println(startColor);
+
+            GradientDrawable gd = new GradientDrawable(
+                    GradientDrawable.Orientation.LEFT_RIGHT,
+                    new int[] {startColor, endColor});
+            RelativeLayout routineRL = routineCard.findViewById(R.id.routine_RL);
+            routineRL.setBackgroundDrawable(gd);
+
+            // add goal tags
             GridLayout goalsGridLayout = routineCard.findViewById(R.id.goal_grid_layout);
             for (String goal : goals) {
                 CardView goalTag = (CardView) LayoutInflater.from(this).inflate(R.layout.goal_tag, routineCard, false);
 
+                // set goal title
                 TextView title = goalTag.findViewById(R.id.goal_title);
                 title.setText(goal);
 
                 goalsGridLayout.addView(goalTag);
             }
 
+            // set position on screen
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
             params.setMargins((int) height, (int) ((routineModel.getStartHour() + 0.5 + (float) routineModel.getStartMinute() / 60) * height), 0, 0);
             params.height = (int) ((routineModel.getEndHour() - routineModel.getStartHour() + (float) (routineModel.getEndMinute() - routineModel.getStartMinute()) / 60) * height);

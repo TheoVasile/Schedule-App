@@ -11,10 +11,11 @@ public class RoutineModel {
     final private int day;
     final private int month;
     final private int year;
+    final private int[] rgb;
     final private ArrayList<RoutineModel> subRoutines;
     final private ArrayList<String> goals;
 
-    public RoutineModel(String title, String description, String startTime, String endTime, int day, int month, int year, ArrayList<RoutineModel> subRoutines, ArrayList<String> goals){
+    public RoutineModel(String title, String description, String startTime, String endTime, int day, int month, int year, int[] rgb, ArrayList<RoutineModel> subRoutines, ArrayList<String> goals){
         this.title = title;
         this.description = description;
         this.startTime = startTime;
@@ -22,6 +23,7 @@ public class RoutineModel {
         this.day = day;
         this.month = month;
         this.year = year;
+        this.rgb = rgb;
         this.subRoutines = subRoutines;
         this.goals = goals;
     }
@@ -78,6 +80,10 @@ public class RoutineModel {
 
     public int getYear() {
         return this.year;
+    }
+
+    public int[] getRGB() {
+        return this.rgb;
     }
 
     public ArrayList<RoutineModel> getSubRoutines() {
