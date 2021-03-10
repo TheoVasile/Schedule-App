@@ -136,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView title = goalTag.findViewById(R.id.goal_title);
                 title.setText(goal);
 
+                RelativeLayout goalTagRL = goalTag.findViewById(R.id.goal_tag_RL);
+                goalTagRL.setBackgroundColor(endColor);
+
                 goalsGridLayout.addView(goalTag);
             }
 
@@ -174,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
             TextView title = v.findViewById(R.id.routine_title);
             TextView startTime = v.findViewById(R.id.routine_start_time);
             TextView endTime = v.findViewById(R.id.routine_end_time);
+            RelativeLayout routineRL = v.findViewById(R.id.routine_RL);
             myIntent.putExtra("title", title.getText());
             myIntent.putExtra("startTime", startTime.getText());
             myIntent.putExtra("endTime", endTime.getText());

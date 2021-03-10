@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="30dp">
     <RelativeLayout
+        android:id="@+id/goal_tag_RL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent2">
@@ -15,10 +16,10 @@
             android:layout_height="wrap_content"
             android:text="Goal"
             android:textColor="@color/colorPrimary"
-            android:textSize="10sp"
+            android:textSize="8sp"
             android:fontFamily="@font/gothic"
             android:gravity="center"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             />
     </RelativeLayout>
 

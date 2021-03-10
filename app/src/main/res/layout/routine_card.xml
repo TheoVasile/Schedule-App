@@ -23,14 +23,17 @@
                 android:textColor="@color/colorPrimary"
                 android:fontFamily="@font/gothic"
                 android:textSize="20sp"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 />
             <LinearLayout
+                android:id="@+id/routine_time"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_toLeftOf="@id/routine_more"
+                android:layout_margin="10dp"
+                android:layout_below="@id/routine_title"
                 >
                 <TextView
                     android:id="@+id/routine_start_time"
@@ -75,8 +78,8 @@
                 android:id="@+id/goal_grid_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/routine_title"
-                android:layout_margin="20dp"
+                android:layout_below="@id/routine_time"
+                android:layout_margin="10dp"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -36,6 +36,7 @@
                 />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,9 +50,10 @@
             android:orientation="vertical"
             >
             <RelativeLayout
+                android:id="@+id/routine_top_bar"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/colorAccent"
+                android:background="@drawable/background_gradient"
                 >
                 <TextView
                     android:id="@+id/routine_view_title"
@@ -115,19 +117,33 @@
                     android:layout_margin="10dp"
                     />
             </RelativeLayout>
-            <LinearLayout
-                android:id="@+id/subroutine_LL"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                />
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/ic_add_circle_outline_black_24dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                />
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/subroutine_LL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <LinearLayout
+                    android:id="@+id/routine_time_LL"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    />
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_add_circle_outline_black_24dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    />
+            </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
